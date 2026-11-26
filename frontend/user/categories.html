@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - TaskManagement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/categories.css">
+</head>
+<body data-role="USER">
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-mark"><span class="material-symbols-outlined">spa</span></span>
+            <span>TaskManagement</span>
+        </a>
+
+        <p class="nav-label">Menu Utama</p>
+        <nav class="nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-symbols-outlined">insights</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="tasks.html" class="nav-item">
+                <span class="material-symbols-outlined">fact_check</span>
+                <span>My Tasks</span>
+            </a>
+            <a href="categories.html" class="nav-item active">
+                <span class="material-symbols-outlined">folder</span>
+                <span>Categories</span>
+            </a>
+        </nav>
+
+        <div class="side-user">
+            <div class="side-user-row">
+                <div class="avatar" data-user-avatar>U</div>
+                <div>
+                    <strong data-user-name>User</strong>
+                    <small data-user-role>USER</small>
+                </div>
+            </div>
+            <button type="button" class="btn btn-soft btn-block" data-logout onclick="typeof logout === 'function' && logout()">
+                <span class="material-symbols-outlined">logout</span>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="main">
+        <header class="topbar">
+            <button type="button" class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </header>
+
+        <main class="content">
+            <section class="page-head">
+                <div>
+                    <h1>Categories</h1>
+                </div>
+            </section>
+
+            <div class="grid-2">
+                <section class="card">
+                    <div class="card-head">
+                        <div class="head-title">
+                            <span class="head-icon"><span class="material-symbols-outlined">add</span></span>
+                            <div>
+                                <h2 id="formTitle">Tambah Kategori</h2>
+                                <p>Beri nama yang singkat dan mudah dikenali.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="categoryForm">
+                        <input type="hidden" id="categoryId">
+
+                        <div class="field">
+                            <label for="categoryName">Nama Kategori</label>
+                            <input
+                                type="text"
+                                id="categoryName"
+                                placeholder="Misal: Kuliah, Proyek Web, Pribadi..."
+                                autocomplete="off"
+                                required
+                            >
+                        </div>
+
+                        <div class="chips chips-suggest">
+                            <span class="chips-label">Ide cepat:</span>
+                            <button type="button" class="chip" data-suggestion="Belajar">+ Belajar</button>
+                            <button type="button" class="chip" data-suggestion="Pekerjaan">+ Pekerjaan</button>
+                            <button type="button" class="chip" data-suggestion="Urgent">+ Urgent</button>
+                        </div>
+
+                        <div class="form-actions">
+                            <button
+                                type="button"
+                                id="cancelEdit"
+                                class="btn btn-ghost"
+                                hidden
+                            >
+                                Batal Edit
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="submitCategoryBtn">
+                                Simpan Kategori
+                            </button>
+                        </div>
+                    </form>
+
+                    <p id="categoryMessage" class="form-message"></p>
+                </section>
+
+                <section class="card table-card">
+                    <div class="card-head">
+                        <div>
+                            <h2>Daftar Kategori</h2>
+                            <p id="categoryCount">Kategori milik akun aktif saat ini.</p>
+                        </div>
+                    </div>
+
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="search" id="filterCategory" placeholder="Cari kategori...">
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="col-id">ID</th>
+                                    <th>Nama Kategori</th>
+                                    <th class="col-action text-right">Aksi</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="categoryList">
+                                <tr>
+                                    <td colspan="3">Memuat data kategori...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</div>
+
+<div class="modal" id="deleteCategoryModal" hidden>
+    <div class="modal-box confirm-modal-box" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+        <button type="button" class="icon-btn modal-close" id="closeDeleteModal" aria-label="Tutup">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+
+        <div class="confirm-badge">
+            <span class="material-symbols-outlined">delete_forever</span>
+        </div>
+
+        <h2 id="deleteModalTitle">Hapus Kategori?</h2>
+        <p class="sub" id="deleteModalDesc">
+            Kategori yang dihapus tidak dapat dikembalikan.
+        </p>
+
+        <div class="confirm-actions">
+            <button type="button" class="btn btn-ghost" id="cancelDeleteBtn">Batal</button>
+            <button type="button" class="btn btn-danger-solid" id="confirmDeleteBtn">
+                <span class="material-symbols-outlined">delete</span>
+                <span>Ya, Hapus</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/categories.js"></script>
+
+</body>
+</html>

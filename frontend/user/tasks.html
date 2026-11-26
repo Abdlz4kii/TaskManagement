@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Saya - TaskManagement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-role="USER">
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-mark"><span class="material-symbols-outlined">spa</span></span>
+            <span>TaskManagement</span>
+        </a>
+
+        <p class="nav-label">Menu Utama</p>
+        <nav class="nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-symbols-outlined">insights</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="tasks.html" class="nav-item active">
+                <span class="material-symbols-outlined">fact_check</span>
+                <span>My Tasks</span>
+            </a>
+            <a href="categories.html" class="nav-item">
+                <span class="material-symbols-outlined">folder</span>
+                <span>Categories</span>
+            </a>
+        </nav>
+
+        <div class="side-user">
+            <div class="side-user-row">
+                <div class="avatar" data-user-avatar>U</div>
+                <div>
+                    <strong data-user-name>User</strong>
+                    <small data-user-role>USER</small>
+                </div>
+            </div>
+            <button type="button" class="btn btn-soft btn-block" data-logout>
+                <span class="material-symbols-outlined">logout</span>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="main">
+        <header class="topbar">
+            <button type="button" class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </header>
+
+        <main class="content">
+            <section class="page-head">
+                <div>
+                    <h1>My Tasks</h1>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-head">
+                    <div class="head-title">
+                        <span class="head-icon"><span class="material-symbols-outlined">add_task</span></span>
+                        <div>
+                            <h2 id="formTitle">Tambah Task</h2>
+                            <p>Isi informasi pekerjaan yang ingin kamu kelola.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="taskForm">
+                    <input type="hidden" id="taskId">
+
+                    <div class="field-grid">
+                        <div class="field span-2">
+                            <label for="title">Judul Task</label>
+                            <input
+                                type="text"
+                                id="title"
+                                maxlength="200"
+                                placeholder="Masukkan judul task"
+                                required
+                            >
+                        </div>
+
+                        <div class="field span-2">
+                            <label for="description">Deskripsi</label>
+                            <textarea
+                                id="description"
+                                placeholder="Masukkan deskripsi task"
+                            ></textarea>
+                        </div>
+
+                        <div class="field">
+                            <label for="category_id">Kategori</label>
+                            <select id="category_id">
+                                <option value="">Tanpa kategori</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="due_date">Deadline</label>
+                            <input type="date" id="due_date">
+                        </div>
+
+                        <div class="field">
+                            <label for="priority">Prioritas</label>
+                            <select id="priority">
+                                <option value="LOW">LOW</option>
+                                <option value="MEDIUM" selected>MEDIUM</option>
+                                <option value="HIGH">HIGH</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="status">Status</label>
+                            <select id="status">
+                                <option value="TODO">TODO</option>
+                                <option value="IN_PROGRESS">IN_PROGRESS</option>
+                                <option value="DONE">DONE</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button
+                            type="button"
+                            id="cancelEdit"
+                            class="btn btn-ghost"
+                            hidden
+                        >
+                            Batal Edit
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Simpan Task
+                        </button>
+                    </div>
+                </form>
+
+                <p id="taskMessage" class="form-message"></p>
+            </section>
+
+            <section class="card table-card">
+                <div class="card-head">
+                    <div>
+                        <h2>Daftar Task Saya</h2>
+                        <p>Semua pekerjaan yang sudah kamu tambahkan.</p>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <div class="search-box">
+                        <span class="material-symbols-outlined">search</span>
+                        <input
+                            type="search"
+                            id="searchTask"
+                            placeholder="Cari task..."
+                        >
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Judul</th>
+                                <th>Kategori</th>
+                                <th>Prioritas</th>
+                                <th>Status</th>
+                                <th>Deadline</th>
+                                <th class="text-right">Aksi</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="taskList">
+                            <tr>
+                                <td colspan="6">Memuat data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/tasks.js"></script>
+</body>
+</html>

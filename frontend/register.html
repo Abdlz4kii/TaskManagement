@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - TaskManagement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="auth-page auth-register">
+
+    <div class="auth-container">
+        <div class="auth-brand">
+            <a href="index.html" class="brand">
+                <span class="brand-mark"><span class="material-symbols-outlined">spa</span></span>
+                <span>TaskManagement<small>CATATAN TUGAS</small></span>
+            </a>
+        </div>
+
+        <div class="auth-card">
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <div class="input-icon">
+                        <span class="material-symbols-outlined">person</span>
+                        <input type="text" id="name" placeholder="Masukkan nama" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Alamat Email</label>
+                    <div class="input-icon">
+                        <span class="material-symbols-outlined">mail</span>
+                        <input type="email" id="email" placeholder="nama@email.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-icon">
+                        <span class="material-symbols-outlined">lock</span>
+                        <input type="password" id="password" placeholder="Masukkan password" required>
+                        <button type="button" class="toggle-pass" data-target="password" aria-label="Tampilkan password"><span class="material-symbols-outlined">visibility</span></button>
+                    </div>
+                </div>
+
+                <p id="message" class="message"></p>
+
+                <button type="submit" class="btn btn-primary">Daftar</button>
+            </form>
+
+            <p class="auth-footer">Sudah punya akun? <a href="login.html">Login</a></p>
+        </div>
+    </div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+</body>
+</html>

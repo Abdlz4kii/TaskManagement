@@ -1,0 +1,121 @@
+=<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TaskManagement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="admin-dashboard" data-role="ADMIN">
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-mark"><span class="material-symbols-outlined">spa</span></span>
+            <span>TaskManagement</span>
+        </a>
+
+        <p class="nav-label">Menu Admin</p>
+        <nav class="nav">
+            <a href="dashboard.html" class="nav-item active"><span class="material-symbols-outlined">insights</span><span>Dashboard</span></a>
+            <a href="users.html" class="nav-item"><span class="material-symbols-outlined">group</span><span>Kelola User</span></a>
+            <a href="tasks.html" class="nav-item"><span class="material-symbols-outlined">fact_check</span><span>Semua Tasks</span></a>
+        </nav>
+
+        <div class="side-user">
+            <div class="side-user-row">
+                <div class="avatar" data-user-avatar>A</div>
+                <div>
+                    <strong data-user-name>Admin</strong>
+                    <small data-user-role>Administrator</small>
+                </div>
+            </div>
+            <button type="button" class="btn btn-soft btn-block" data-logout><span class="material-symbols-outlined">logout</span><span>Logout</span></button>
+        </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="main">
+        <header class="topbar">
+            <button type="button" class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu"><span class="material-symbols-outlined">menu</span></button>
+        </header>
+
+        <main class="content">
+            <section class="page-head">
+                <div>
+                    <p class="eyebrow">Ringkasan</p>
+                    <h1>Admin Dashboard</h1>
+                </div>
+                <div class="head-actions">
+                    <a href="users.html" class="btn btn-secondary"><span class="material-symbols-outlined">group</span>User</a>
+                </div>
+            </section>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Total Tasks</span><span class="stat-icon"><span class="material-symbols-outlined">layers</span></span></div>
+                    <span class="stat-value" id="totalTasks">0</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">To Do</span><span class="stat-icon gray"><span class="material-symbols-outlined">schedule</span></span></div>
+                    <span class="stat-value" id="todoTasks">0</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">In Progress</span><span class="stat-icon sand"><span class="material-symbols-outlined">hourglass_top</span></span></div>
+                    <span class="stat-value" id="progressTasks">0</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Completed</span><span class="stat-icon"><span class="material-symbols-outlined">check_circle</span></span></div>
+                    <span class="stat-value" id="completedTasks">0</span>
+                </div>
+            </section>
+
+            <section class="grid-2">
+                <div class="card">
+                    <div class="card-head">
+                        <h2>Status Tasks</h2>
+                    </div>
+                    <div class="chart-wrap chart-canvas">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head">
+                        <h2>Prioritas Tasks</h2>
+                    </div>
+                    <div class="chart-wrap chart-canvas">
+                        <canvas id="priorityChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid-2">
+                <div class="card">
+                    <div class="card-head">
+                        <h2>User Terbaru</h2>
+                    </div>
+                    <div id="recentUsers" class="task-list"><p>Memuat...</p></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head">
+                        <h2>Task Terbaru</h2>
+                        <a href="tasks.html" class="link-more">Semua <span class="material-symbols-outlined">arrow_forward</span></a>
+                    </div>
+                    <div id="recentTasks" class="task-list"><p>Memuat...</p></div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/admin-dashboard.js"></script>
+</body>
+</html>

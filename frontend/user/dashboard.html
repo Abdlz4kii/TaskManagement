@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TaskManagement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="user-dashboard" data-role="USER">
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-mark"><span class="material-symbols-outlined">spa</span></span>
+            <span>TaskManagement</span>
+        </a>
+
+        <p class="nav-label">Menu Utama</p>
+        <nav class="nav">
+            <a href="dashboard.html" class="nav-item active">
+                <span class="material-symbols-outlined">insights</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="tasks.html" class="nav-item">
+                <span class="material-symbols-outlined">fact_check</span>
+                <span>My Tasks</span>
+            </a>
+            <a href="categories.html" class="nav-item">
+                <span class="material-symbols-outlined">folder</span>
+                <span>Categories</span>
+            </a>
+        </nav>
+
+        <div class="side-user">
+            <div class="side-user-row">
+                <div class="avatar" data-user-avatar>U</div>
+                <div>
+                    <strong data-user-name>User</strong>
+                    <small data-user-role>USER</small>
+                </div>
+            </div>
+            <button type="button" class="btn btn-soft btn-block" data-logout>
+                <span class="material-symbols-outlined">logout</span>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="main">
+        <header class="topbar">
+            <button type="button" class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </header>
+
+        <main class="content">
+            <section class="page-head">
+                <div>
+                    <h1>Dashboard</h1>
+                </div>
+            </section>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Total Tasks</span>
+                        <span class="stat-icon"><span class="material-symbols-outlined">task_alt</span></span>
+                    </div>
+                    <span class="stat-value" id="totalTasks">0</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">To Do</span>
+                        <span class="stat-icon gray"><span class="material-symbols-outlined">radio_button_unchecked</span></span>
+                    </div>
+                    <span class="stat-value" id="todoTasks">0</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">In Progress</span>
+                        <span class="stat-icon sand"><span class="material-symbols-outlined">pending</span></span>
+                    </div>
+                    <span class="stat-value" id="progressTasks">0</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Completed</span>
+                        <span class="stat-icon"><span class="material-symbols-outlined">check_circle</span></span>
+                    </div>
+                    <span class="stat-value" id="completedTasks">0</span>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-head">
+                    <h2>Task Progress</h2>
+                    <span class="progress-summary">
+                        <span id="progressText">0/0 selesai</span>
+                        <span id="tasksLeft">0 tersisa</span>
+                        <strong id="progressPercentage">0%</strong>
+                    </span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </section>
+
+            <section class="grid-2">
+                <div class="card">
+                    <div class="card-head">
+                        <h2>Status Distribution</h2>
+                    </div>
+                    <div class="chart-box">
+                        <canvas id="userStatusChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head">
+                        <h2>Priority Breakdown</h2>
+                    </div>
+                    <div class="chart-box">
+                        <canvas id="userPriorityChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-head">
+                    <h2>Recent Tasks</h2>
+                    <a href="tasks.html" class="link-more">
+                        Lihat semua
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+                <div id="recentTasks" class="task-list">Memuat task...</div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

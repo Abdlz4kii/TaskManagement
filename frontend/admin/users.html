@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola User - TaskManagement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-role="ADMIN">
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-mark"><span class="material-symbols-outlined">spa</span></span>
+            <span>TaskManagement</span>
+        </a>
+
+        <p class="nav-label">Menu Admin</p>
+        <nav class="nav">
+            <a href="dashboard.html" class="nav-item"><span class="material-symbols-outlined">insights</span><span>Dashboard</span></a>
+            <a href="users.html" class="nav-item active"><span class="material-symbols-outlined">group</span><span>Kelola User</span></a>
+            <a href="tasks.html" class="nav-item"><span class="material-symbols-outlined">fact_check</span><span>Semua Tasks</span></a>
+        </nav>
+
+        <div class="side-user">
+            <div class="side-user-row">
+                <div class="avatar" data-user-avatar>U</div>
+                <div>
+                    <strong data-user-name>User</strong>
+                    <small>Admistrator</small>
+                </div>
+            </div>
+            <button type="button" class="btn btn-soft btn-block" data-logout><span class="material-symbols-outlined">logout</span><span>Logout</span></button>
+        </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="main">
+        <header class="topbar">
+            <button type="button" class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu"><span class="material-symbols-outlined">menu</span></button>
+        </header>
+
+        <main class="content">
+            <section class="page-head">
+                <div>
+                    <p class="eyebrow">Pengguna</p>
+                    <h1>Kelola User</h1>
+                </div>
+            </section>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Total User</span><span class="stat-icon"><span class="material-symbols-outlined">group</span></span></div>
+                    <span class="stat-value" id="totalUsers">0</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Aktif</span><span class="stat-icon"><span class="material-symbols-outlined">verified_user</span></span></div>
+                    <span class="stat-value" id="activeUsers">0</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Nonaktif</span><span class="stat-icon gray"><span class="material-symbols-outlined">person_off</span></span></div>
+                    <span class="stat-value" id="inactiveUsers">0</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Admin</span><span class="stat-icon sand"><span class="material-symbols-outlined">admin_panel_settings</span></span></div>
+                    <span class="stat-value" id="adminUsers">0</span>
+                </div>
+            </section>
+
+            <section class="grid-2">
+                <div class="card">
+                    <div class="card-head">
+                        <div class="head-title">
+                            <span class="head-icon"><span class="material-symbols-outlined">donut_large</span></span>
+                            <div>
+                                <h2>Statistik Pengguna</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-wrap">
+                        <div class="donut-box">
+                            <div class="donut-ring" id="userDonutChart">
+                                <div class="donut-hole">
+                                    <strong id="chartPercent">100%</strong>
+                                    <span>USER AKTIF</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chart-bars">
+                            <div>
+                                <div class="bar-item-head">
+                                    <span>User Aktif</span>
+                                    <span id="barActiveText">0</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill green" id="barActiveFill"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="bar-item-head">
+                                    <span>Administrator</span>
+                                    <span id="barAdminText">0</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill sand" id="barAdminFill"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="bar-item-head">
+                                    <span>Nonaktif</span>
+                                    <span id="barInactiveText">0</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill gray" id="barInactiveFill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mini-table-card">
+                    <div class="mini-table-head">
+                        <div>
+                            <h2>Tabel Ringkasan User</h2>
+                        </div>
+                        <span class="badge badge-cat" id="tableCountBadge">0 Akun</span>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userSummaryTable">
+                                <tr>
+                                    <td colspan="3">Menunggu data user...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="toolbar">
+                <div class="search-box">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="text" id="searchUser" placeholder="Cari nama atau email...">
+                </div>
+            </section>
+
+            <div id="userMessage"></div>
+
+            <section id="userList">
+                <p>Memuat data pengguna...</p>
+            </section>
+
+            <div class="modal" id="userModal" hidden>
+                <form class="modal-box" id="editUserForm">
+                    <button type="button" class="icon-btn modal-close" data-close-modal aria-label="Tutup"><span class="material-symbols-outlined">close</span></button>
+
+                    <p class="eyebrow">Pengguna</p>
+                    <h2>Edit User</h2>
+
+                    <input type="hidden" id="editUserId">
+
+                    <div class="modal-user">
+                        <span class="user-avatar-sm" id="editUserAvatar">U</span>
+                        <div>
+                            <strong id="editUserName">User</strong>
+                            <span id="editUserEmail">-</span>
+                        </div>
+                    </div>
+
+                    <label>Role</label>
+                    <div class="option-grid">
+                        <label class="option-card">
+                            <input type="radio" name="editRole" value="USER">
+                            <strong>USER</strong>
+                            <span>Akses tugas pribadi</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="editRole" value="ADMIN">
+                            <strong>ADMIN</strong>
+                            <span>Akses penuh sistem</span>
+                        </label>
+                    </div>
+
+                    <div class="switch-row">
+                        <div>
+                            <strong id="editActiveLabel">Status: Aktif</strong>
+                            <span>Izinkan akses login</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="editActive">
+                            <span class="switch-ui"></span>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-ghost" data-close-modal>Batal</button>
+                        <button type="submit" class="btn btn-primary" id="saveUserBtn"><span class="material-symbols-outlined">check</span>Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/admin-user.js"></script>
+
+</body>
+</html>

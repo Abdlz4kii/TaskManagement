@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semua Tasks - TaskManagement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-role="ADMIN">
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-mark"><span class="material-symbols-outlined">spa</span></span>
+            <span>TaskManagement</span>
+        </a>
+
+        <p class="nav-label">Menu Admin</p>
+        <nav class="nav">
+            <a href="dashboard.html" class="nav-item"><span class="material-symbols-outlined">insights</span><span>Dashboard</span></a>
+            <a href="users.html" class="nav-item"><span class="material-symbols-outlined">group</span><span>Kelola User</span></a>
+            <a href="tasks.html" class="nav-item active"><span class="material-symbols-outlined">fact_check</span><span>Semua Tasks</span></a>
+        </nav>
+
+        <div class="side-user">
+            <div class="side-user-row">
+                <div class="avatar" data-user-avatar>U</div>
+                <div>
+                    <strong data-user-name>User</strong>
+                    <small data-user-role>Administrator</small>
+                </div>
+            </div>
+            <button type="button" class="btn btn-soft btn-block" data-logout><span class="material-symbols-outlined">logout</span>Logout</button>
+        </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="main">
+        <header class="topbar">
+            <button type="button" class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu"><span class="material-symbols-outlined">menu</span></button>
+        </header>
+
+        <main class="content">
+            <section class="page-head">
+                <div>
+                    <p class="eyebrow">Monitoring</p>
+                    <h1>Semua Tasks</h1>
+                </div>
+            </section>
+
+            <section class="toolbar">
+                <div class="search-box">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="search" id="searchTask" placeholder="Cari judul task...">
+                </div>
+                <div class="filter-group">
+                    <select id="filterPriority" aria-label="Filter Prioritas">
+                        <option value="">Semua Prioritas</option>
+                        <option value="HIGH">High</option>
+                        <option value="MEDIUM">Medium</option>
+                        <option value="LOW">Low</option>
+                    </select>
+                    <select id="filterStatus" aria-label="Filter Status">
+                        <option value="">Semua Status</option>
+                        <option value="TODO">To Do</option>
+                        <option value="IN_PROGRESS">In Progress</option>
+                        <option value="DONE">Done</option>
+                    </select>
+                    <button type="button" class="btn btn-soft" id="resetFilter" title="Reset Filter">
+                        <span class="material-symbols-outlined">restart_alt</span>Reset
+                    </button>
+                </div>
+            </section>
+
+            <section class="card table-card">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Task</th>
+                                <th>User</th>
+                                <th>Judul</th>
+                                <th>Prioritas</th>
+                                <th>Status</th>
+                                <th>Deadline</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTaskList">
+                            <tr><td colspan="6">Memuat data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-foot" id="taskCount"></div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/admin-tasks.js"></script>
+</body>
+</html>
